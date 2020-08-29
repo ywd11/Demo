@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" value="11" placeholder="请输入值">
+    <p></p>
+<script>
+    var obj = {}
+    var val = 'hello'
+    console.log(document.getElementsByTagName('input')[0].value)
+    Object.defineProperty(obj,"value", {
+        get: function () {
+            return val
+        },
+        set: function (newVal) {
+            val = newVal
+            console.log('set val:' + newVal)
+            document.getElementsByTagName('input')[0].value = newVal
+            document.getElementsByTagName('p')[0].innerText = newVal
+        }
+    })
+    obj.value = "567"
+    document.getElementsByTagName('input')[0].addEventListener('keyup', function(e) {
+        obj.value = e.target.value
+        console.log(obj)
+    })
+//     var obj = { key: '213' }
+// //第一种情况：enumerable设置为false，不能被枚举。
+// // Object.defineProperty(obj,"newKey",{
+// //     value:"hello",
+// //     writable:false,
+// //     enumerable:false
+// // });
+
+// // //枚举对象的属性
+// // for( var attr in obj ){
+// //     console.log( attr );  
+// // }
+// //第二种情况：enumerable设置为true，可以被枚举。
+// Object.defineProperty(obj,"newKey",{
+//     value:"hello",
+//     writable:false,
+//     enumerable:true
+// });
+
+// //枚举对象的属性
+// for( var attr in obj ){
+//     console.log( attr );  //newKey
+// }
+</script>
+</body>
+</html>
